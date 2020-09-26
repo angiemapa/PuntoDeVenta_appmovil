@@ -21,6 +21,9 @@ class PasswordScreen extends StatelessWidget {
     );
   }
 
+  bool visibilidad = true;
+  void visible() {}
+
   Widget _body(BuildContext context) {
     return Center(
       child: Column(
@@ -56,6 +59,9 @@ class PasswordScreen extends StatelessWidget {
             labelText: "Ingrese contraseña",
             hinText: "***************",
             width: MediaQuery.of(context).size.width / 1.15,
+            suffixIcon: IconButton(
+                icon: Icon(Icons.visibility_off), onPressed: visible),
+            obscureText: visibilidad = false,
           ),
           SizedBox(
             height: 15,
@@ -82,7 +88,7 @@ class PasswordScreen extends StatelessWidget {
           ),
           FlatButton(
             onPressed: () => Navigator.of(context).pushNamed("Login/email"),
-            child: Text('Registrarse'),
+            child: Text('Registrar usuario'),
           ),
         ],
       ),

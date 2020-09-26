@@ -6,7 +6,7 @@ import 'package:proyecto_administracion/src/login/ui/email_screen.dart';
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
     "Login": (BuildContext context) => LoginScreen(),
-    "Login/email": (BuildContext context) => EmailScreen(),
+    "Login/email": (BuildContext context) => Emailscreen(),
     "Login/password": (BuildContext context) => PasswordScreen()
   };
 }
