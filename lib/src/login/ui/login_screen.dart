@@ -4,7 +4,8 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+      body: SingleChildScrollView(
+        child: Container(
             width: double.infinity, //ajuste a cualquier pantalla
             color: Color(0xFFfeffff),
             child: SafeArea(
@@ -92,6 +93,8 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            )));
+            )),
+      ),
+    );
   }
 }
