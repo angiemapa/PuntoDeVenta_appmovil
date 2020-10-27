@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_administracion/src/clases/text_field_widget.dart';
+//import 'package:proyecto_administracion/src/clases/text_field_widget.dart';
 
-class ListaScreen extends StatelessWidget {
+class ListaScreen extends StatefulWidget {
+  @override
+  _ListaScreenState createState() => _ListaScreenState();
+}
+
+class _ListaScreenState extends State<ListaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +27,7 @@ class ListaScreen extends StatelessWidget {
   }
 
   bool visibilidad = true;
+
   void visible() {}
 
   Widget _body(BuildContext context) {
