@@ -1,7 +1,8 @@
-import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Login2 extends StatefulWidget {
   @override
@@ -9,44 +10,36 @@ class Login2 extends StatefulWidget {
 }
 
 class _Login2State extends State<Login2> {
-  static final FacebookLogin facebookSignIn = new FacebookLogin();
+  bool isLoggedIn = false;
 
-  String _message = 'Log in/out by pressing the buttons below.';
-
-  Future<Null> _login() async {
-    final FacebookLoginResult result = await facebookSignIn.logIn(['email']);
-
+  void initiateFacebookLogin() async {
+    var login = FacebookLogin();
+    var result = await login.logIn(['email', 'user_link']);
     switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        final FacebookAccessToken accessToken = result.accessToken;
-        _showMessage('''
-         Logged in!
-         
-         Token: ${accessToken.token}
-         User id: ${accessToken.userId}
-         Expires: ${accessToken.expires}
-         Permissions: ${accessToken.permissions}
-         Declined permissions: ${accessToken.declinedPermissions}
-         ''');
+      case FacebookLoginStatus.error:
+        print("Surgio un error");
         break;
       case FacebookLoginStatus.cancelledByUser:
-        _showMessage('Login cancelled by the user.');
+        print("Cancelado por el usuario");
         break;
-      case FacebookLoginStatus.error:
-        _showMessage('Something went wrong with the login process.\n'
-            'Here\'s the error Facebook gave us: ${result.errorMessage}');
+      case FacebookLoginStatus.loggedIn:
+        onLoginStatusChange(true);
+        getUserInfo(result);
         break;
     }
   }
 
-  Future<Null> _logOut() async {
-    await facebookSignIn.logOut();
-    _showMessage('Logged out.');
+  void getUserInfo(FacebookLoginResult result) async {
+    final token = result.accessToken.token;
+    final graphResponse = await http.get(
+        'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=${token}');
+    final profile = json.decode(graphResponse.body);
+    print(profile['user_link']);
   }
 
-  void _showMessage(String message) {
+  void onLoginStatusChange(bool isLoggedIn) {
     setState(() {
-      _message = message;
+      this.isLoggedIn = isLoggedIn;
     });
   }
 
@@ -55,23 +48,15 @@ class _Login2State extends State<Login2> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text('Plugin example app'),
+          title: new Text('Login with facebook'),
         ),
         body: new Center(
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Text(_message),
-              new RaisedButton(
-                onPressed: _login,
-                child: new Text('Log in'),
-              ),
-              new RaisedButton(
-                onPressed: _logOut,
-                child: new Text('Logout'),
-              ),
-            ],
-          ),
+          child: isLoggedIn
+              ? Text("Bienvenido")
+              : new RaisedButton(
+                  onPressed: () => initiateFacebookLogin(),
+                  child: new Text('Iniciar sesion con Facebook'),
+                ),
         ),
       ),
     );
