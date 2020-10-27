@@ -12,6 +12,9 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 60,
+                  ), //
                   Text(
                     'Bienvenida a',
                     style: TextStyle(
@@ -23,9 +26,9 @@ class LoginScreen extends StatelessWidget {
                     height: 15,
                   ), //Espacio entre letra y logo
                   Image.asset(
-                    "assets/images/ui.png",
-                    width: 169,
-                    height: 80,
+                    "assets/images/logo.png",
+                    width: 400,
+                    height: 300,
                   ),
                   SizedBox(height: 70),
                   Container(

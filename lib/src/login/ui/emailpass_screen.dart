@@ -50,9 +50,9 @@ class _PasswordScreenState extends State<PasswordScreen> {
               height: 15,
             ),
             Image.asset(
-              "assets/images/ui.png",
-              width: 169,
-              height: 80,
+              "assets/images/logo.png",
+              width: 300,
+              height: 300,
             ),
             SizedBox(
               height: 50,
