@@ -4,13 +4,17 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+      body: SingleChildScrollView(
+        child: Container(
             width: double.infinity, //ajuste a cualquier pantalla
             color: Color(0xFFfeffff),
             child: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 60,
+                  ), //
                   Text(
                     'Bienvenida a',
                     style: TextStyle(
@@ -22,9 +26,9 @@ class LoginScreen extends StatelessWidget {
                     height: 15,
                   ), //Espacio entre letra y logo
                   Image.asset(
-                    "assets/images/ui.png",
-                    width: 169,
-                    height: 80,
+                    "assets/images/logo.png",
+                    width: 400,
+                    height: 300,
                   ),
                   SizedBox(height: 70),
                   Container(
@@ -87,18 +91,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                   FlatButton(
                     onPressed: () =>
-                        Navigator.of(context).pushNamed("Producto/list"),
-                    child: Text('Nueva'),
+                        Navigator.of(context).pushNamed("Login/password"),
+                    child: Text('Ingresar con correo electrónico'),
                   ),
-                  // mover a otra pantalla
-                  /*IconButton(
-                    icon: Icon(Icons.list),
-                    onPressed: () =>
-                        Navigator.of(context).pushNamed("Producto/list"),
-                        child:
-                  )*/
                 ],
               ),
-            )));
+            )),
+      ),
+    );
   }
 }
