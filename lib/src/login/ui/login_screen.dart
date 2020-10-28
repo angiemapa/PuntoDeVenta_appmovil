@@ -66,7 +66,9 @@ class LoginScreen extends StatelessWidget {
                     height: 50,
                     child: RaisedButton(
                       color: Color(0xFF17252A),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("List/screen");
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

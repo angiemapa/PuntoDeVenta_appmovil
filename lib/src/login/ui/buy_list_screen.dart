@@ -45,29 +45,6 @@ class _BuyListState extends State<BuyList> {
             Expanded(
               child: ListaPedidos(),
             ),
-            BottomNavigationBar(
-              onTap: (index) {},
-              elevation: 0,
-              currentIndex: 2,
-              iconSize: 36,
-              backgroundColor: Color(0xff17252A),
-              unselectedItemColor: Colors.white,
-              selectedItemColor: Colors.black54,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.people),
-                  title: Text("perfil"),
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.list),
-                  title: Text("lista"),
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart),
-                  title: Text("lista"),
-                )
-              ],
-            ),
           ],
         ),
       ),

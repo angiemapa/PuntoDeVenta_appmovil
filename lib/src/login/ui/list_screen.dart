@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_administracion/src/login/ui/buy_list_screen.dart';
+import 'package:proyecto_administracion/src/login/ui/seguircomprando_screen.dart';
 
 class List extends StatefulWidget {
   @override
@@ -6,52 +8,44 @@ class List extends StatefulWidget {
 }
 
 class _ListState extends State<List> {
+  int _posicion = 0;
+  final items = <Widget>[
+    _body(),
+    BuyList(),
+    SeguirComprando(),
+  ];
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            _posicion = index;
+          });
+        },
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.ac_unit),
-          onPressed: () => {},
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.access_alarm),
-            onPressed: () => {},
+        currentIndex: 2,
+        iconSize: 36,
+        backgroundColor: Color(0xff17252A),
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.black54,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            title: Text("Categoría"),
           ),
-          IconButton(
-            icon: Icon(Icons.account_balance_wallet),
-            onPressed: () => {},
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            title: Text("lista"),
           ),
-          SizedBox(
-            width: 10,
-          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            title: Text("lista"),
+          )
         ],
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: GridView.builder(
-                itemCount: 6,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 20,
-                  childAspectRatio: 0.75,
-                ),
-                itemBuilder: (context, index) => ItemCard(),
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: items[_posicion],
     );
   }
 }
@@ -85,11 +79,104 @@ class ItemCard extends StatelessWidget {
             style: TextStyle(color: Colors.grey),
           ),
         ),
-        Text(
-          'Precio \$\$\$',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
       ],
     );
   }
+}
+
+class _body extends StatefulWidget {
+  @override
+  __bodyState createState() => __bodyState();
+}
+
+class __bodyState extends State<_body> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        actions: <Widget>[
+          IconButton(
+            icon: Image.asset(
+              "assets/iconos/regresar.jpg",
+            ),
+            onPressed: () => {},
+          ),
+          SizedBox(
+            width: 10,
+          ),
+        ],
+      ),
+      body: _body1(context),
+    );
+  }
+}
+
+Widget _body1(BuildContext context) {
+  return Column(
+    children: [
+      Container(
+          child: Column(
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: 15,
+              ),
+              Text(
+                "Hola",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xFF2b7a78),
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                "Paola",
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Color(0xFF2b7a78),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 20,
+              ),
+              Text(
+                "¿Qué te gustaría comprar?",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xFF2b7a78),
+                ),
+              )
+            ],
+          )
+        ],
+      )),
+      SizedBox(
+        height: 20,
+      ),
+      Expanded(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: GridView.builder(
+            itemCount: 15,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 15,
+              crossAxisSpacing: 15,
+              childAspectRatio: 0.75,
+            ),
+            itemBuilder: (context, index) => ItemCard(),
+          ),
+        ),
+      ),
+    ],
+  );
 }
