@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_administracion/src/login/ui/emailpass_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/login_screen.dart';
-import 'package:proyecto_administracion/src/login/ui/product_list_screen.dart';
-
+import 'package:proyecto_administracion/src/login/ui/email_screen.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
     "Login": (BuildContext context) => LoginScreen(),
-    "Producto/list": (BuildContext context) => ListaScreen()
+    "Login/email": (BuildContext context) => Emailscreen(),
+    "Login/password": (BuildContext context) => PasswordScreen()
   };
 }
