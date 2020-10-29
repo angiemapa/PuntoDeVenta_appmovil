@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_administracion/src/login/ui/buy_list_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/seguircomprando_screen.dart';
+import 'package:proyecto_administracion/src/login/ui/user_screen.dart';
 
 class List extends StatefulWidget {
   @override
@@ -10,8 +11,8 @@ class List extends StatefulWidget {
 class _ListState extends State<List> {
   int _posicion = 0;
   final items = <Widget>[
+    UserScreen(),
     _body(),
-    BuyList(),
     SeguirComprando(),
   ];
   @override
@@ -32,16 +33,16 @@ class _ListState extends State<List> {
         selectedItemColor: Colors.black54,
         items: [
           BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text("Usuairo"),
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.category),
             title: Text("Categoría"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            title: Text("lista"),
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            title: Text("lista"),
+            title: Text("Carrito"),
           )
         ],
       ),
