@@ -13,18 +13,11 @@ class _EstadoVentasState extends State<EstadoVentas> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-            size: 40,
-          ),
+          icon: const Icon(Icons.arrow_back, color: Colors.black,size: 40,),
           onPressed: () {},
         ),
         backgroundColor: Colors.white,
-        title: Text(
-          "Volver",
-          style: TextStyle(fontSize: 25, color: Color(0xFF2b7a78)),
-        ),
+        title: Text("Volver",style: TextStyle(fontSize: 25, color: Color(0xFF2b7a78)),),
       ),
       body: Container(
         child: Column(
@@ -32,16 +25,8 @@ class _EstadoVentasState extends State<EstadoVentas> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                "Estado de tu Orden",
-                style: TextStyle(fontSize: 30),
-              ),
-            ),
-            SizedBox(
-              height: 25,
-            ),
+            Container(alignment: Alignment.center,child: Text("Estado de tu Orden",style: TextStyle(fontSize: 30),),),
+            SizedBox(height: 25,),
             Container(
               //condicion para cambio de imagen
               child: Image.asset(
@@ -52,10 +37,7 @@ class _EstadoVentasState extends State<EstadoVentas> {
             ),
             Container(
               alignment: Alignment.center,
-              child: Text(
-                "BODEGA",
-                style: TextStyle(fontSize: 20),
-              ),
+              child: Text("BODEGA",style: TextStyle(fontSize: 20),),
             ),
             Container(
               alignment: Alignment.center,

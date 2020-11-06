@@ -5,6 +5,7 @@ import 'package:proyecto_administracion/src/login/ui/list_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/login_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/email_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/seguircomprando_screen.dart';
+import 'package:proyecto_administracion/src/login/ui/EstadoVenta.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
@@ -13,6 +14,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     "Login/password": (BuildContext context) => PasswordScreen(),
     "List/screen": (BuildContext context) => List(),
     "Seguir/screen": (BuildContext context) => SeguirComprando(),
-    "Usuario/screen": (BuildContext context) => BuyList()
+    "Usuario/screen": (BuildContext context) => BuyList(),
+    "Estado/Venta": (BuildContext context) => EstadoVentas()
   };
 }

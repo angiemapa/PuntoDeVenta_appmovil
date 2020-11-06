@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       initialRoute: "Login",
-      //routes: getApplicationRoutes(),
-      home: EstadoVentas(),
+      routes: getApplicationRoutes(),
+      //home: EstadoVentas(),
     );
   }
 }
