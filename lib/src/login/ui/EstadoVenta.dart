@@ -57,6 +57,20 @@ class _EstadoVentasState extends State<EstadoVentas> {
                 style: TextStyle(fontSize: 20),
               ),
             ),
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                "En Camino",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                "Entregado",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
             SizedBox(
               height: 75,
             ),
