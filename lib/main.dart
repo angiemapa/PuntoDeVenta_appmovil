@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_administracion/src/login/ui/EstadoVenta.dart';
 import 'package:proyecto_administracion/src/routes/app_route.dart';
 
 void main() {
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       initialRoute: "Login",
-      routes: getApplicationRoutes(),
+      //routes: getApplicationRoutes(),
+      home: EstadoVentas(),
     );
   }
 }
