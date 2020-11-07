@@ -35,8 +35,13 @@ dependencies:
   google_sign_in: ^4.5.3
   firebase_core: ^0.5.0
   firebase_auth: ^0.18.0+1
+<<<<<<< HEAD
   image_picker: ^0.6.1+11
   
+=======
+  flutter_facebook_login: ^3.0.0
+  http: ^0.12.2
+>>>>>>> feature/inicioSesion
 
 dev_dependencies:
   flutter_test:
