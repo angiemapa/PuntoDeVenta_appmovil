@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                     height: 50,
                     child: RaisedButton(
                       color: Color(0xFF17252A),
-                      onPressed: () {},
+                      onPressed: () => Navigator.of(context).popAndPushNamed("Home"),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                     child: RaisedButton(
                       color: Color(0xFF17252A),
                       onPressed: () {
-                        Navigator.of(context).pushNamed("List/screen");
+                        Navigator.of(context).pushNamed("List/Screen");
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   FlatButton(
                     onPressed: () =>
-                        Navigator.of(context).pushNamed("Login/password"),
+                        Navigator.of(context).pushNamed("Home"),
                     child: Text('Ingresar con correo electrónico'),
                   ),
                 ],

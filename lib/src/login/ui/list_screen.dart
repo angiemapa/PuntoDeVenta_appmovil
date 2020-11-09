@@ -19,6 +19,12 @@ class _ListState extends State<List> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(icon: Icon(Icons.exit_to_app), onPressed: null)
+        ],
+        
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {
