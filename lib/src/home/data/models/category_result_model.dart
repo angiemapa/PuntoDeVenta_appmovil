@@ -1,22 +1,22 @@
-import 'package:flutter/foundation.dart';
+part of 'models.dart';
 
-class ResultModel {
+class CategoryResultModel {
   int id;
   String categoria;
   String imagen;
 
-  ResultModel({
+  CategoryResultModel({
     @required this.id,
     @required this.categoria,
     @required this.imagen,
   });
 
-  ResultModel.fromJson(Map<String, dynamic> json) {
+  CategoryResultModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     categoria = json['categoria'];
     imagen = json['imagen'];
   }
 
   @override
-  String toString() => 'ResultModel(id: $id, categoria: $categoria, imagen: $imagen)';
+  String toString() => '(id: $id, categoria: $categoria, imagen: $imagen)';
 }
