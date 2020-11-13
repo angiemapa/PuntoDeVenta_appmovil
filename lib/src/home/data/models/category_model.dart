@@ -1,12 +1,10 @@
-import 'package:flutter/foundation.dart';
-
-import 'package:proyecto_administracion/src/home/ui/category/data/models/result_model.dart';
+part of 'models.dart';
 
 class CategoryModel {
   int count;
   String next;
   String previous;
-  List<ResultModel> results;
+  List<CategoryResultModel> results;
 
   CategoryModel({
     @required this.count,
@@ -20,15 +18,15 @@ class CategoryModel {
     next = json['next'];
     previous = json['previous'];
     if (json['results'] != null) {
-      results = new List<ResultModel>();
+      results = new List<CategoryResultModel>();
       json['results'].forEach((v) {
-        results.add(new ResultModel.fromJson(v));
+        results.add(new CategoryResultModel.fromJson(v));
       });
     }
   }
-  
+
   @override
   String toString() {
-    return 'CategoryModel(count: $count, next: $next, previous: $previous, results: $results)';
+    return '(count: $count, next: $next, previous: $previous, results: [$results])';
   }
 }
