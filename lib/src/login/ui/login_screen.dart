@@ -35,8 +35,10 @@ class LoginScreen extends StatelessWidget {
                     width: 251,
                     height: 50,
                     child: RaisedButton(
+                      //Boton para iniciar cuenta con google
                       color: Color(0xFF17252A),
-                      onPressed: () => Navigator.of(context).popAndPushNamed("Home"),
+                      onPressed: () =>
+                          Navigator.of(context).popAndPushNamed("Home"),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -67,13 +69,14 @@ class LoginScreen extends StatelessWidget {
                     child: RaisedButton(
                       color: Color(0xFF17252A),
                       onPressed: () {
+                        //botton para ingresar con usuario de facebook
                         Navigator.of(context).pushNamed("List/Screen");
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Google',
+                            'Facebook',
                             style: TextStyle(color: Colors.white, fontSize: 25),
                           ),
                           SizedBox(
@@ -92,8 +95,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   FlatButton(
-                    onPressed: () =>
-                        Navigator.of(context).pushNamed("Home"),
+                    onPressed: () => Navigator.of(context).pushNamed("Home"),
                     child: Text('Ingresar con correo electrónico'),
                   ),
                 ],
