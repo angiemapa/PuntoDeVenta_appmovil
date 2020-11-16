@@ -14,6 +14,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     "Home": (BuildContext context) {
       return BlocProvider(
         create: (context) => HomeBloc(
+          SaleModel(total: 0),
           ProductRepository(),
           CategoryRepository(),
           CategoryModel(count: 0, next: null, previous: null, results: null),

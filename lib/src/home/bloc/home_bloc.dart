@@ -11,11 +11,13 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  final SaleModel saleModel;
   final ProductRepository prodRepo;
   final CategoryRepository catRepo;
   final CategoryModel catModel;
   final ProductModel prodModel;
   HomeBloc(
+    this.saleModel,
     this.prodRepo,
     this.catRepo,
     this.catModel,
