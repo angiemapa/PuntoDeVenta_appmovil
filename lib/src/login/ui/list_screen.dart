@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_administracion/src/login/ui/buy_list_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/seguircomprando_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/user_screen.dart';
 

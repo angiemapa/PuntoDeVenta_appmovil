@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proyecto_administracion/src/home/ui/category/bloc/category_bloc.dart';
-import 'package:proyecto_administracion/src/home/ui/category/data/models/category_model.dart';
-import 'package:proyecto_administracion/src/home/ui/category/data/repository/category_repository.dart';
+import 'package:proyecto_administracion/src/home/bloc/home_bloc.dart';
+import 'package:proyecto_administracion/src/home/data/models/models.dart';
+import 'package:proyecto_administracion/src/home/data/repositories/repository.dart';
 import 'package:proyecto_administracion/src/home/ui/home_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/login_screen.dart';
 
@@ -13,14 +13,12 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     "Login": (BuildContext context) => LoginScreen(),
     "Home": (BuildContext context) {
       return BlocProvider(
-        create: (context) => CategoryBloc(
-          repository: CategoryRepository(),
-          model: CategoryModel(
-            count: null,
-            next: null,
-            previous: null,
-            results: null,
-          ),
+        create: (context) => HomeBloc(
+          SaleModel(total: 0),
+          ProductRepository(),
+          CategoryRepository(),
+          CategoryModel(count: 0, next: null, previous: null, results: null),
+          ProductModel(count: 0, next: null, previous: null, results: null),
         ),
         child: HomeScreen(),
       );
