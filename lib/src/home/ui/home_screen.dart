@@ -3,10 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_administracion/src/home/bloc/home_bloc.dart';
-import 'package:proyecto_administracion/src/home/ui/category/ui/category_screen.dart';
-import 'package:proyecto_administracion/src/home/ui/product/ui/product_screen.dart';
-import 'package:proyecto_administracion/src/home/widgets/progress_widget.dart';
-import 'package:proyecto_administracion/src/home/widgets/snackbar_widget.dart';
+import 'package:proyecto_administracion/src/home/ui/home_body_products.dart';
+
+import 'Sale/seguircomprando_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -16,7 +15,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   int _position = 0;
+  List<Widget> bodies = [
+    Center(
+      child: Text("data"),
+    ),
+    HomeBodyProducts(),
+    SeguirComprando(),
+  ];
 
   @override
   void initState() {
@@ -28,18 +35,25 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFFFEFFFF),
+          backgroundColor: Colors.white,
           elevation: 0,
+          title: Text(
+            _titleAppbar(),
+            style: TextStyle(color: Colors.black),
+          ),
           actions: [
-            IconButton(
-              icon: Icon(
-                Icons.refresh,
-                color: Colors.black,
-                size: 40,
-              ),
-              onPressed: () => context.bloc<HomeBloc>().add(LoadInitial()),
-              tooltip: "Recargar",
-            ),
+            (_position == 1)
+                ? IconButton(
+                    icon: Icon(
+                      Icons.refresh,
+                      color: Colors.black,
+                      size: 40,
+                    ),
+                    onPressed: () =>
+                        context.bloc<HomeBloc>().add(LoadInitial()),
+                    tooltip: "Recargar",
+                  )
+                : Center(),
             IconButton(
               icon: Icon(
                 Icons.exit_to_app,
@@ -70,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.category),
-              title: Text("Categoría"),
+              title: Text("Productos"),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart),
@@ -78,55 +92,15 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-        body: BlocConsumer<HomeBloc, HomeState>(
-          listener: (context, state) {
-            if (state is Failure) {
-              print(":V");
-              SnackbarWidget(
-                context: context,
-                text: state.error,
-                color: Colors.red,
-              ).showSnackbar();
-            } else if (state is NoMoreData) {
-              SnackbarWidget(
-                context: context,
-                text: state.error,
-                color: Colors.orange[300],
-              ).showSnackbar();
-            }
-          },
-          builder: (context, state) {
-            if (state is HomeInitial)
-              context.bloc<HomeBloc>().add(LoadInitial());
-            else if (state is InProgress)
-              return ProgressWidget(title: "Cargando datos");
-            else if (state is Failure)
-              return Container(
-                child: Center(
-                  child: Text("${state.error}"),
-                ),
-              );
-            return Column(
-              children: [_categoryBody(context), _productBody(context)],
-            );
-          },
-        ));
+        body: bodies[_position]);
   }
 
-  Widget _categoryBody(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5),
-      height: MediaQuery.of(context).size.width * 0.25,
-      color: Color(0xFFe9ecef),
-      child: CategoryBody(),
-    );
-  }
-
-  Widget _productBody(BuildContext context) {
-    return Container(
-      color: Color(0xffe9ecef),
-      height: MediaQuery.of(context).size.height * 0.71,
-      child: ProductBody(),
-    );
+  String _titleAppbar() {
+    if (_position == 0)
+      return "Usuario";
+    else if (_position == 1)
+      return "Productos";
+    else
+      return "Mi Orden";
   }
 }

@@ -36,8 +36,10 @@ class _ProductBodyState extends State<ProductBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.0),
+    return Container(
+      padding: EdgeInsets.all(15),
+      color: Color(0xFFe9ecef),
+      height: MediaQuery.of(context).size.height-(MediaQuery.of(context).size.height*0.1)-160,
       child: GridView.builder(
         controller: controllerProduct,
         itemCount: model.results.length,
@@ -47,12 +49,13 @@ class _ProductBodyState extends State<ProductBody> {
           crossAxisSpacing: 5,
           childAspectRatio: 0.5,
         ),
-        itemBuilder: (context, index) => GestureDetector(
+        itemBuilder: (gridContext, index) => GestureDetector(
           onTap: () => Navigator.push(
-            context,
+            gridContext,
             MaterialPageRoute(
-              builder: (context) => ProductDetail(
+              builder: (gridContext) => ProductDetail(
                 model: model.results[index],
+                saleModel: BlocProvider.of<HomeBloc>(context).saleModel
               ),
             ),
           ),

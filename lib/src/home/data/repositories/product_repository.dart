@@ -10,13 +10,13 @@ class ProductRepository {
       final response = await http.get(
         "$urlBase/producto/",
         headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'Accept': 'application/json; charset=utf-8',
+          'Content-Type': 'application/json; charset=UTF-8',
+          "Accept": 'application/json; charset=UTF-8',
         },
       );
       return {
         "code": response.statusCode,
-        "data": response.body,
+        "data": utf8.decode(response.bodyBytes),
       };
     } on SocketException {
       message = "No Internet connection";
@@ -36,13 +36,13 @@ class ProductRepository {
       final response = await http.get(
         url,
         headers: {
-          'Content-Type': 'application/json; charset=utf-8',
+          'Content-type': 'application/json; charset=utf-8',
           'Accept': 'application/json; charset=utf-8',
         },
       );
       return {
         "code": response.statusCode,
-        "data": response.body,
+        "data": utf8.decode(response.bodyBytes),
       };
     } on SocketException {
       message = "No Internet connection";
