@@ -16,7 +16,7 @@ class CategoryRepository {
       );
       return {
         "code": response.statusCode,
-        "data": response.body,
+        "data": utf8.decode(response.bodyBytes),
       };
     } on SocketException {
       message = "No Internet connection";
@@ -40,7 +40,7 @@ class CategoryRepository {
       );
       return {
         "code": response.statusCode,
-        "data": response.body,
+        "data": utf8.decode(response.bodyBytes),
       };
     } on SocketException {
       message = "No Internet connection";
