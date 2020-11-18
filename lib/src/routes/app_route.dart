@@ -4,6 +4,8 @@ import 'package:proyecto_administracion/src/home/bloc/home_bloc.dart';
 import 'package:proyecto_administracion/src/home/data/models/models.dart';
 import 'package:proyecto_administracion/src/home/data/repositories/repository.dart';
 import 'package:proyecto_administracion/src/home/ui/home_screen.dart';
+import 'package:proyecto_administracion/src/login/ui/email_screen.dart';
+import 'package:proyecto_administracion/src/login/ui/emailpass_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/login_screen.dart';
 
 import '../login/ui/list_screen.dart';
@@ -24,5 +26,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
       );
     },
     "List/Screen": (BuildContext context) => List(),
+    "EmailScreen1": (BuildContext context) => Emailscreen(),
+    "EmailScreen2": (BuildContext context) => PasswordScreen(),
   };
 }

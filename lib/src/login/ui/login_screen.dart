@@ -95,7 +95,8 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   FlatButton(
-                    onPressed: () => Navigator.of(context).pushNamed("Home"),
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed("EmailScreen2"),
                     child: Text('Ingresar con correo electrónico'),
                   ),
                 ],
