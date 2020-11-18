@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_administracion/login/login_screen3.dart';
 import 'package:proyecto_administracion/src/home/data/repositories/email_repository.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -39,8 +40,12 @@ class LoginScreen extends StatelessWidget {
                     child: RaisedButton(
                       //Boton para iniciar cuenta con google
                       color: Color(0xFF17252A),
-                      onPressed: () =>
-                          Navigator.of(context).popAndPushNamed("Home"),
+                      onPressed: () {
+                        Correo cliente = Correo();
+                        cliente.singUpWithGoogle();
+                        Navigator.of(context).popAndPushNamed("Home");
+                      },
+
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -72,7 +77,9 @@ class LoginScreen extends StatelessWidget {
                       color: Color(0xFF17252A),
                       onPressed: () {
                         //botton para ingresar con usuario de facebook
-                        //Navigator.of(context).pushNamed("List/Screen");
+                        Correo cliente = Correo();
+                        cliente.singUpWithFacebook();
+                        Navigator.of(context).pushNamed("List/Screen");
                         er.cargarUsuarios();
                       },
                       child: Row(

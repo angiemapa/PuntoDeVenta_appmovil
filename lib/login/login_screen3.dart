@@ -2,133 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:proyecto_administracion/src/user/ui/user_datos.dart';
 
-class Correo extends StatefulWidget {
-  @override
-  _CorreoState createState() => _CorreoState();
-}
-
-class _CorreoState extends State<Correo> {
-  final emailTextController = TextEditingController();
-  final passwordTextController = TextEditingController();
-
-  @override
-  void dispose() {
-    emailTextController.dispose();
-    passwordTextController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Registrate por correo",
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              width: 360,
-              child: TextFormField(
-                validator: (input) {
-                  if (input.isEmpty) {
-                    return 'Por favor escriba un correo';
-                  }
-                },
-                decoration: InputDecoration(
-                  labelText: 'Correo',
-                ),
-                controller: emailTextController,
-              ),
-            ),
-            SizedBox(
-              width: 360,
-              child: TextFormField(
-                validator: (input) {
-                  if (input.isEmpty) {
-                    return 'Por favor escriba una contraseña';
-                  }
-                },
-                decoration: InputDecoration(
-                  labelText: 'Contraseña',
-                ),
-                controller: passwordTextController,
-              ),
-            ),
-            SizedBox(height: 20),
-            SizedBox(
-              width: 360,
-              child: RaisedButton(
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.mail, size: 30),
-                    Text(
-                      '  Ingresa con correo',
-                      style: TextStyle(fontSize: 28),
-                    )
-                  ],
-                ),
-                textColor: Colors.white,
-                color: Colors.red[400],
-                padding: EdgeInsets.all(10),
-                onPressed: () {
-                  singUpWithMail();
-                },
-              ),
-            ),
-            SizedBox(height: 20),
-            SizedBox(
-              width: 360,
-              child: RaisedButton(
-                onPressed: () {
-                  singUpWithFacebook();
-                },
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.thumb_up, size: 30),
-                    Text(
-                      '  Ingresa con Facebook',
-                      style: TextStyle(fontSize: 26),
-                    )
-                  ],
-                ),
-                textColor: Colors.white,
-                color: Colors.red[400],
-                padding: EdgeInsets.all(10),
-              ),
-            ),
-            SizedBox(height: 20),
-            SizedBox(
-              width: 360,
-              child: RaisedButton(
-                onPressed: () {
-                  singUpWithGoogle();
-                },
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.toys, size: 30),
-                    Text(
-                      '  Ingresa con Google',
-                      style: TextStyle(fontSize: 28),
-                    )
-                  ],
-                ),
-                textColor: Colors.white,
-                color: Colors.red[400],
-                padding: EdgeInsets.all(10),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Future<void> singUpWithMail() async {
+class Correo {
+  /*Future<void> singUpWithMail() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailTextController.text,
@@ -151,27 +28,29 @@ class _CorreoState extends State<Correo> {
         },
       );
     }
-  }
+  }*/
 
   Future<void> singUpWithFacebook() async {
+    Usuario_final cliente = Usuario_final();
     try {
       var facebookLogin = new FacebookLogin();
       var result = await facebookLogin.logIn(['email']);
       AuthCredential credential;
       if (result.status == FacebookLoginStatus.loggedIn) {
         credential = FacebookAuthProvider.credential(result.accessToken.token);
+        final User user =
+            (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+        cliente.getUsuario(user, null, true);
+        return user;
       }
-      ;
-      final User user =
-          (await FirebaseAuth.instance.signInWithCredential(credential)).user;
-      print(user.displayName);
-      return user;
+      return null;
     } catch (e) {
       print(e.message);
     }
   }
 
   Future<void> singUpWithGoogle() async {
+    Usuario_final cliente = Usuario_final();
     try {
       GoogleSignIn _googleSignIn =
           GoogleSignIn(scopes: ['email'], hostedDomain: "", clientId: "");
@@ -182,6 +61,7 @@ class _CorreoState extends State<Correo> {
       final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googlrAuth.accessToken, idToken: googlrAuth.idToken);
       final User user = (await _auth.signInWithCredential(credential)).user;
+      cliente.getUsuario(user, null, true);
       print("Sign in " + user.displayName);
       return user;
     } catch (e) {
