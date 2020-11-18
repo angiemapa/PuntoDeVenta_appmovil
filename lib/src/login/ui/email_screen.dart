@@ -82,7 +82,7 @@ class _EmailscreenState extends State<Emailscreen> {
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'Debe Ingresar Nombre y Apellido';
                   }
                   return null;
                 },
@@ -129,7 +129,7 @@ class _EmailscreenState extends State<Emailscreen> {
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Debe Ingresar Telefono';
                       }
                       return null;
                     },
@@ -168,7 +168,7 @@ class _EmailscreenState extends State<Emailscreen> {
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Debe Ingresar Direccion';
                       }
                       return null;
                     },
@@ -203,7 +203,7 @@ class _EmailscreenState extends State<Emailscreen> {
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Debe Ingresar Correo Electronico';
                       }
                       return null;
                     },
@@ -258,7 +258,7 @@ class _EmailscreenState extends State<Emailscreen> {
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Debe Ingresar Contraseña';
                       }
                       return null;
                     },

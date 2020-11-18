@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_administracion/src/home/data/repositories/email_repository.dart';
 
 class LoginScreen extends StatelessWidget {
+  EmailRepository er = EmailRepository();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +72,8 @@ class LoginScreen extends StatelessWidget {
                       color: Color(0xFF17252A),
                       onPressed: () {
                         //botton para ingresar con usuario de facebook
-                        Navigator.of(context).pushNamed("List/Screen");
+                        //Navigator.of(context).pushNamed("List/Screen");
+                        er.cargarUsuarios();
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

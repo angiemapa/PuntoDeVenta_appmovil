@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_administracion/src/home/data/models/user_model.dart';
+import 'package:proyecto_administracion/src/home/data/repositories/email_repository.dart';
 
 class PasswordScreen extends StatefulWidget {
   @override
@@ -33,6 +35,11 @@ class _PasswordScreenState extends State<PasswordScreen> {
   }
 
   final _formKey = GlobalKey<FormState>();
+  EmailRepository er = EmailRepository();
+  String correo;
+  String contrasena;
+  List<UsuarioGet> usuarios;
+  bool encontrado = false;
 
   Widget _body(BuildContext context) {
     return SingleChildScrollView(
@@ -80,8 +87,9 @@ class _PasswordScreenState extends State<PasswordScreen> {
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter some text';
+                      return 'Debe Ingresar Correo Electronico';
                     }
+                    correo = value;
                     return null;
                   },
                 ),
@@ -122,8 +130,9 @@ class _PasswordScreenState extends State<PasswordScreen> {
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter some text';
+                      return 'Debe Ingresar Contraseña';
                     }
+                    contrasena = value;
                     return null;
                   },
                 ),
@@ -145,9 +154,26 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     ],
                   ),
                   color: Color(0xFF17252A),
-                  onPressed: () {
+                  onPressed: () async {
+                    usuarios = await er.cargarUsuarios();
                     if (_formKey.currentState.validate()) {
-                      Navigator.of(context).popAndPushNamed("Home");
+                      for (var item in usuarios) {
+                        if (item.correo == correo &&
+                            item.contrasena == contrasena) {
+                          encontrado = !encontrado;
+                          Navigator.of(context).popAndPushNamed("Home");
+                        }
+                      }
+                      if (!encontrado) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: Text('Correo o contrasela no validos'),
+                            );
+                          },
+                        );
+                      }
                     }
                   },
                   shape: RoundedRectangleBorder(

@@ -143,12 +143,13 @@ class _CorreoState extends State<Correo> {
     } catch (e) {
       print(e.message);
       showDialog(
-          context: this.context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(e.message),
-            );
-          });
+        context: this.context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(e.message),
+          );
+        },
+      );
     }
   }
 
