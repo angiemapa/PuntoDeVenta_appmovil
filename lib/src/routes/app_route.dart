@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_administracion/src/login/home.dart';
 import 'package:proyecto_administracion/src/login/ui/buy_list_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/emailpass_screen.dart';
 import 'package:proyecto_administracion/src/login/ui/list_screen.dart';
@@ -15,6 +16,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     "List/screen": (BuildContext context) => List(),
     "Seguir/screen": (BuildContext context) => SeguirComprando(),
     "Usuario/screen": (BuildContext context) => BuyList(),
-    "Estado/Venta": (BuildContext context) => EstadoVentas()
+    "Estado/Venta": (BuildContext context) => EstadoVentas(),
+    "homes":(BuildContext context) => homes(),
   };
 }
