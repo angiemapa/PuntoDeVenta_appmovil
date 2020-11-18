@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_administracion/login/login_screen3.dart';
+import 'package:proyecto_administracion/src/home/data/models/user_model.dart';
+import 'package:proyecto_administracion/src/user/ui/user_datos.dart';
 
 class Emailscreen extends StatefulWidget {
   @override
@@ -32,6 +35,14 @@ class _EmailscreenState extends State<Emailscreen> {
   }
 
   final _formKey = GlobalKey<FormState>();
+  String nombre;
+  String telefono;
+  String direccion;
+  String correo;
+  String contrsena;
+  UsuarioGet usuario;
+  Correo registrar = Correo();
+  Usuario_final uf = Usuario_final();
 
   Widget _body(BuildContext context) {
     return SingleChildScrollView(
@@ -84,6 +95,7 @@ class _EmailscreenState extends State<Emailscreen> {
                   if (value.isEmpty) {
                     return 'Debe Ingresar Nombre y Apellido';
                   }
+                  nombre = value;
                   return null;
                 },
               ),
@@ -131,6 +143,7 @@ class _EmailscreenState extends State<Emailscreen> {
                       if (value.isEmpty) {
                         return 'Debe Ingresar Telefono';
                       }
+                      telefono = value;
                       return null;
                     },
                   ),
@@ -170,6 +183,7 @@ class _EmailscreenState extends State<Emailscreen> {
                       if (value.isEmpty) {
                         return 'Debe Ingresar Direccion';
                       }
+                      direccion = value;
                       return null;
                     },
                   ),
@@ -205,6 +219,7 @@ class _EmailscreenState extends State<Emailscreen> {
                       if (value.isEmpty) {
                         return 'Debe Ingresar Correo Electronico';
                       }
+                      correo = value;
                       return null;
                     },
                   ),
@@ -260,6 +275,7 @@ class _EmailscreenState extends State<Emailscreen> {
                       if (value.isEmpty) {
                         return 'Debe Ingresar Contraseña';
                       }
+                      contrsena = value;
                       return null;
                     },
                   ),
@@ -283,6 +299,14 @@ class _EmailscreenState extends State<Emailscreen> {
                     color: Color(0xFF17252A),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
+                        usuario = UsuarioGet(
+                          nombre: nombre,
+                          telefono: telefono,
+                          correo: correo,
+                          contrasena: contrsena,
+                        );
+                        registrar.singUpWithMail(correo, contrsena, context);
+                        uf.getUsuario(null, usuario, null);
                         Navigator.of(context).popAndPushNamed("Home");
                       }
                     },

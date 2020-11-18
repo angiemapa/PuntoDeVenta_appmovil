@@ -5,13 +5,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:proyecto_administracion/src/user/ui/user_datos.dart';
 
 class Correo {
-  /*Future<void> singUpWithMail() async {
+  Future<void> singUpWithMail(
+      emailTextController, passwordTextController, context) async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailTextController.text,
-          password: passwordTextController.text);
+          email: emailTextController, password: passwordTextController);
       showDialog(
-          context: this.context,
+          context: context,
           builder: (context) {
             return AlertDialog(
               content: Text('Ingreso completado'),
@@ -20,7 +20,7 @@ class Correo {
     } catch (e) {
       print(e.message);
       showDialog(
-        context: this.context,
+        context: context,
         builder: (context) {
           return AlertDialog(
             content: Text(e.message),
@@ -28,7 +28,7 @@ class Correo {
         },
       );
     }
-  }*/
+  }
 
   Future<void> singUpWithFacebook() async {
     Usuario_final cliente = Usuario_final();
